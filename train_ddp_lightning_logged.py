@@ -38,6 +38,7 @@ def parse_args():
     # general
     parser.add_argument('--network', default='r50', help='specify network')
     parser.add_argument('--inp-size', type=int, default=112, help='input image size')
+    parser.add_argument('--num_workers', type=int, default=10, help='num workers')
     parser.add_argument('--block-layout', type=str, default='8 28 6', help='feature block layout')
     #parser.add_argument('--block-size', type=str, default='32 384 1152 2144', help='feature block size')
     parser.add_argument('--block-size', type=str, default='32 32 64 128 256', help='feature block size') # original size
@@ -676,7 +677,7 @@ if __name__ == '__main__':
     #
     IMAGE_ROOT =['ms1m-retinaface-t1-112x112_rgb_badpose_fix_bad_angle_realign_060921realign']#
     IMAGE_LIST=None
-    NUM_WORKERS=4
+    NUM_WORKERS=args.num_workers
     IMAGE_PER_LABEL = 10
     train_loader = ImageDataModule(image_root=IMAGE_ROOT, image_list=IMAGE_LIST,
         image_transform_indoor=image_transforms[IMG_TRANSFORM_ID], image_transform_outdoor=image_transforms[IMG_TRANSFORM_ID],
