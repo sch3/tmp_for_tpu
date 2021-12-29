@@ -647,7 +647,7 @@ class ImageDataModule(pl.LightningDataModule):
         self.batch_size= batch_size
         train_size = int(len(self.dataset)*0.75)
         self.tr, self.tst = torch.utils.data.random_split(self.dataset, [train_size,len(self.dataset)-train_size])
-        self.dataloader = DataLoader(self.tr.dataset,batch_size=self.batch_size,num_workers=10, pin_memory=True)
+        self.dataloader = DataLoader(self.tr.dataset,batch_size=self.batch_size,num_workers=num_workers, pin_memory=True)
     def train_dataloader(self):
         return self.dataloader
     def val_dataloader(self):
