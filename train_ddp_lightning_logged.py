@@ -29,8 +29,7 @@ from pytorch_lightning.plugins import DDPPlugin
 from pytorch_lightning.callbacks import ModelCheckpoint,Callback
 from torch.optim.lr_scheduler import _LRScheduler
 from p_tqdm import p_map
-storage_client = storage.Client()
-bucket = storage_client.bucket('kneron-eval-training-bucket')
+
 #import torchmetrics
 #—net r50 —block-size ‘32 32 64 128 256’ —se 0 —focal True —emb 256 —do 0.0 —margin 0.5 —gr
 def parse_args():
@@ -137,6 +136,8 @@ def load_image_local(im):
 Dataset and transforms
 '''
 def load_image(im):
+    storage_client = storage.Client()
+    bucket = storage_client.bucket('kneron-eval-training-bucket')
     blob = bucket.blob(im)
     img = Image.open(io.BytesIO(blob.download_as_string()))
     return img.convert('RGB')
