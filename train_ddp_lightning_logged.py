@@ -235,6 +235,8 @@ class ImageDataSet(Dataset):
 
 
     def _get_dataset_from_dir(self,img_root_list, min_images_per_label=10):
+        storage_client = storage.Client()
+        bucket = storage_client.bucket('kneron-eval-training-bucket')
         image_list = []
         label_list = []
         images_per_label = {}
