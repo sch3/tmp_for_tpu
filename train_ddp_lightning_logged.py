@@ -700,7 +700,7 @@ if __name__ == '__main__':
     #seems to save ckpt with check val epoch frequency and is defined here instead of ckpt callback
     #https://pytorch-lightning.readthedocs.io/en/latest/common/trainer.html
     #TPU settings
-    trainer = pl.Trainer(tpu_cores=8, max_epochs=args.max_epoch,callbacks=[checkpoint_callback],profiler="simple",check_val_every_n_epoch=10)
+    trainer = pl.Trainer(tpu_cores=1, max_epochs=args.max_epoch,callbacks=[checkpoint_callback],profiler="simple",check_val_every_n_epoch=10)
     #trainer = pl.Trainer(gpus=args.num_gpus,accelerator="ddp", plugins=DDPPlugin(find_unused_parameters=False),max_epochs=args.max_epoch,callbacks=[checkpoint_callback],profiler="simple")
     print("NUM LABELS ",train_loader.dataset.num_labels)
     model = LitModel(train_loader.dataset.num_labels)
