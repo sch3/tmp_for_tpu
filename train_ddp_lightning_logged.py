@@ -209,11 +209,11 @@ class ImageDataSet(Dataset):
         print('- total number of images:', self.__len__())
         print('- number of images per label, min/max: {}/{}'.format(self.min_num_images, self.max_num_images))
         #preload:        
-        self.image_list_local =p_map(load_image,self.image_list)
+        #self.image_list_local =p_map(load_image,self.image_list)
         
     def __getitem__(self, index):
-        img = self.image_list_local[index]
-        #img = load_image(self.image_list[index])
+        #img = self.image_list_local[index]
+        img = load_image(self.image_list[index])
         if 'indoor' in self.image_list[index]:
             img = self.image_transform_indoor(img)
         elif 'outdoor' in self.image_list[index]:
@@ -675,7 +675,7 @@ if __name__ == '__main__':
     IMG_TRANSFORM_ID = 'kneron-gray'
     #create dataset
     #
-    IMAGE_ROOT =['ms1m-retinaface-t1-112x112_rgb_badpose_fix_bad_angle_realign_060921realign']#['toy_bucket']#
+    IMAGE_ROOT =['ms1m-retinaface-t1-112x112_rgb_badpose_fix_bad_angle_realign_060921realign_truncated']#['toy_bucket']#
     IMAGE_LIST=None
     NUM_WORKERS=args.num_workers
     IMAGE_PER_LABEL = 10
