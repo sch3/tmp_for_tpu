@@ -678,7 +678,7 @@ if __name__ == '__main__':
     IMG_TRANSFORM_ID = 'kneron-gray'
     #create dataset
     #
-    IMAGE_ROOT =['toy_bucket']#['ms1m-retinaface-t1-112x112_rgb_badpose_fix_bad_angle_realign_060921realign_truncated']
+    IMAGE_ROOT =['ms1m-retinaface-t1-112x112_rgb_badpose_fix_bad_angle_realign_060921realign_truncated']#['toy_bucket']
     IMAGE_LIST=None
     NUM_WORKERS=args.num_workers
     IMAGE_PER_LABEL = 10
